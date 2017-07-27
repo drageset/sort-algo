@@ -14,7 +14,7 @@ class RadixSorter {
      *
      * @param queue     that contains the Integers to be sorted
      * @param maxDigits is the max amount of digits in the numbers you are sorting
-     * @return deque that has been sorted
+     * @return queue that has been sorted
      */
     static Queue<Integer> radixSort(Queue<Integer> queue, int maxDigits) {
 
@@ -32,7 +32,7 @@ class RadixSorter {
             for (Queue<Integer> bucket : buckets)
                 bucket.clear();
 
-			/* Grab lectures from the front of the deque and place it into the bucket depending on the value of it's relevant digit */
+			/* Grab lectures from the front of the queue and place it into the bucket depending on the value of it's relevant digit */
             Integer element = queue.poll();
             while (element != null) {
                 int sortingDigit = (element / currentDigitBeingSorted) % 10; //retrieves the digit that the number is to be sorted by this iteration
@@ -42,7 +42,7 @@ class RadixSorter {
             }
             currentDigitBeingSorted *= 10; // move up to the next digit towards the left
 
-			/* Place contents of bucket[0], bucket[1], . . . , bucket[9] back into the deque */
+			/* Place contents of bucket[0], bucket[1], . . . , bucket[9] back into the queue */
             for (int j = 0; j < buckets.length; j++) {
                 while (!buckets[j].isEmpty()) {
                     queue.add(buckets[j].poll());
